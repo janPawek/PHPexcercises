@@ -11,6 +11,7 @@
         }
     </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></head>
+
 <body>
 <!-- Day 2 | Classwork
 Exercise 1
@@ -209,35 +210,55 @@ From 16°C to 20°C: Warm
 Above 21°C: Hot
 Use Bootstrap to show yours results on the screen. -->
 <h1>Day 2 | Advanced Exercise </h1>
+<br>
+
+<form action="" method='GET'>Type fahrenheit: <input type="integer"  name="temp">
+<input type="submit" name="submit"></form>
+
 <?php
+// function convertFahrenheitToCelsius($fahrenheit) {
+//     $celsius = ($fahrenheit - 32) * (5/9);
+//     return $celsius;
+// }
+$fahrenheit= $_GET["temp"];
 function convertFahrenheitToCelsius($fahrenheit) {
     $celsius = ($fahrenheit - 32) * (5/9);
     return $celsius;
 }
 
 // Example usage
-$fahrenheit = 80; // You can change this value as needed
+
+// $fahrenheit = 20;
+ // You can change this value as needed
 
 $celsius = convertFahrenheitToCelsius($fahrenheit);
 
 $message = "";
 $image = "";
+$background = "";
 
-if ($celsius >= 0 && $celsius <= 5) {
+
+
+if ($celsius >= -40 && $celsius <= 5) {
     $message = "Very cold";
-    $image = "../img/snowflake.png";
+    $image = "../PHP_Day02/img/snowflake.png";
+    $background = "#00009a";
 } elseif ($celsius >= 6 && $celsius <= 10) {
     $message = "Cold";
-    $image = "../img/cold.png";
+    $image = "../PHP_Day02/img/cold.png";
+    $background = "#0000ff";
 } elseif ($celsius >= 11 && $celsius <= 15) {
     $message = "Pleasant";
-    $image = "../img/pleasant.png";
-} elseif ($celsius >= 16 && $celsius <= 20) {
+    $image = "../PHP_Day02/img/pleasant.png";
+    $background = "#f4ff00";
+} elseif ($celsius >= 16 && $celsius <= 25) {
     $message = "Warm";
-    $image = "../img/warm.png";
+    $image = "../PHP_Day02/img/warm.png";
+    $background = "#ec6827";
 } else {
     $message = "Hot";
-    $image = "../img/hot.png";
+    $image = "../PHP_Day02/img/hot.png";
+    $background = "#d40000";
 }
 ?>
 <div class="container">
@@ -245,9 +266,33 @@ if ($celsius >= 0 && $celsius <= 5) {
         <p>Fahrenheit: <?php echo $fahrenheit; ?></p>
         <p>Celsius: <?php echo $celsius; ?></p>
         <p>Condition: <?php echo $message; ?></p>
-        <img src="<?php echo $image; ?>" alt="<?php echo $message; ?>" class="img-fluid">
+        <!-- change background-color with >div> -->
+        <div style="background-color: <?= $background; ?>"  >
+        <img src="<?php echo $image; ?>"  alt="<?php echo $message; ?>" class="img-fluid">
+        </div>
+        <div id="demo"></div>
+        <button onclick="getLocation()">show location</button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+const x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+  x.innerHTML = `<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d10637.988462398604!2d${position.coords.longitude}!3d${position.coords.latitude}!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sde!2sat!4v1710853957892!5m2!1sde!2sat" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+}
+</script>
 </body>
 </html>
