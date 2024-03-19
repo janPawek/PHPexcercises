@@ -53,19 +53,19 @@ echo "<pre>";
 ?>
 <div class="cards">
 <div class="card" style="width: 18rem;">
-  <img src="../PHPday1.php/img/super-mario.jpg" class="card-img-top" alt="...">
+  <img src="../PHP_DAY01/img/super-mario.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text"> Age: <?= $cartoon_arr["Super Mario"]["age"] ?><br> Height: <?= $cartoon_arr["Super Mario"]["height"] ?><br> Game: <?= $cartoon_arr["Super Mario"]["game"] ?></p>
   </div>
 </div>
 <div class="card" style="width: 18rem;">
-  <img src="../PHPday1.php/img/mickey.jpg" class="card-img-top" alt="...">
+  <img src="../PHP_DAY01/img/mickey.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text"> Age: <?= $cartoon_arr["Mickey Mouse"]["age"] ?><br> Height: <?= $cartoon_arr["Mickey Mouse"]["height"] ?><br> Game: <?= $cartoon_arr["Mickey Mouse"]["game"] ?></p>
   </div>
 </div>
 <div class="card" style="width: 18rem;">
-  <img src="../PHPday1.php/img/goku.jpg" class="card-img-top" alt="...">
+  <img src="../PHP_DAY01/img/goku.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text"> Age: <?= $cartoon_arr["Goku"]["age"] ?><br> Height: <?= $cartoon_arr["Goku"]["height"] ?><br> Game: <?= $cartoon_arr["Goku"]["game"] ?></p>
   </div>
