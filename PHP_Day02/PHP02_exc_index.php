@@ -225,19 +225,19 @@ $image = "";
 
 if ($celsius >= 0 && $celsius <= 5) {
     $message = "Very cold";
-    $image = "snowflake.png";
+    $image = "../img/snowflake.png";
 } elseif ($celsius >= 6 && $celsius <= 10) {
     $message = "Cold";
-    $image = "cold.png";
+    $image = "../img/cold.png";
 } elseif ($celsius >= 11 && $celsius <= 15) {
     $message = "Pleasant";
-    $image = "pleasant.png";
+    $image = "../img/pleasant.png";
 } elseif ($celsius >= 16 && $celsius <= 20) {
     $message = "Warm";
-    $image = "warm.png";
+    $image = "../img/warm.png";
 } else {
     $message = "Hot";
-    $image = "hot.png";
+    $image = "../img/hot.png";
 }
 ?>
 <div class="container">
