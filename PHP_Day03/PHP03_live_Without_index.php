@@ -16,7 +16,7 @@
         //fetch array fetching one record only
         foreach ($rows as $value) {
             $layout .= "<div><div class='card' style='width: 18rem;'>
-            <img src='pictures/{$value["picture"]}' class='card-img-top' alt='...'>
+            <img src='{$value["picture"]}' class='card-img-top' alt='...'>
             <div class='card-body'>
               <h5 class='card-title'>{$value["name"]}</h5>
               <p class='card-text'>{$value["price"]} €</p>
