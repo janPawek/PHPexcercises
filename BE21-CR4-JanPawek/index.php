@@ -66,6 +66,25 @@
         }
     }
 }
+      .autocomplete-box {
+            position: relative;
+        }
+        .autocomplete-results {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .autocomplete-item {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .autocomplete-item:hover {
+            background-color: #f0f0f0;
+        }
     </style>
     <title>Big Library - CodeReview Backend - Jan Pawek</title>
 </head>
@@ -88,9 +107,13 @@
 
       <!-- Suchformular -->
       <form class="d-flex" role="search" action="" method="GET">
-        <input class="form-control me-2" type="text" name="search" placeholder="Search..." aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <div class="autocomplete-box">
+          <input id="searchInput" class="form-control me-2" type="text" name="search" placeholder="Search..." aria-label="Search">
+          <div class="autocomplete-results"></div>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
       </form>
+    </div>
     </div>
   </div>
 </nav>
@@ -143,5 +166,42 @@
     </footer>
     <!-- FOOTER SECTION-END -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchInput').addEventListener('input', function() {
+        var searchText = this.value.trim();
+        if(searchText.length >= 2) {
+            fetch('autocomplete.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'search=' + encodeURIComponent(searchText)
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('.autocomplete-results').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        } else {
+            document.querySelector('.autocomplete-results').innerHTML = '';
+        }
+    });
+
+    document.addEventListener('click', function(event) {
+        if(!event.target.closest('.autocomplete-item')) {
+            document.querySelector('.autocomplete-results').innerHTML = '';
+        }
+    });
+
+    document.querySelector('.autocomplete-results').addEventListener('click', function(event) {
+        var selectedText = event.target.textContent;
+        document.getElementById('searchInput').value = selectedText;
+        this.innerHTML = '';
+    });
+});
+</script>
 </body>
 </html>
