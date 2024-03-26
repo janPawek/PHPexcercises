@@ -16,7 +16,8 @@
     
         if(isset($_POST["create"])){
         $title = $_POST["title"];
-        $image = $_POST["image"];
+        // $image = $_POST["image"];
+        $image = fileUpload($_FILES["image"]);
         $ISBN = $_POST["ISBN"];
         $short_des = $_POST["short_des"];
         $long_des = $_POST["long_des"];
@@ -29,7 +30,7 @@
         $status_del = $_POST["status_del"];
 
 
-       $sql = "INSERT INTO `inventory`(`title`, `image`, `ISBN`, `short_des`, `long_des`, `type`, `author_first_name`, `author_last_name`, `publisher_name`, `publisher_address`, `publish_date`, `status_del`) VALUES ('{$title}','{$image}','{$ISBN}','{$short_des}','{$long_des}','{$type}','{$author_first_name}','{$author_last_name}','{$publisher_name}','{$publisher_address}','{$publish_date}','{$status_del}')";
+       $sql = "INSERT INTO `inventory`(`title`, `image`, `ISBN`, `short_des`, `long_des`, `type`, `author_first_name`, `author_last_name`, `publisher_name`, `publisher_address`, `publish_date`, `status_del`) VALUES ('{$title}','{$image[0]}','{$ISBN}','{$short_des}','{$long_des}','{$type}','{$author_first_name}','{$author_last_name}','{$publisher_name}','{$publisher_address}','{$publish_date}','{$status_del}')";
         /*mit diesen 2 codes:
             mysqli_query($conn,$sql);
             header("Location: index.php");
@@ -84,7 +85,7 @@
   <div class="container">
     <form method="post" enctype="multipart/form-data">
         <input type="text" class="form-control" placeholder="title" name="title">
-        <input type="text" class="form-control" placeholder="insert url of image " name="image">
+        <input type="file" class="form-control" placeholder="insert url of image " name="image">
         <input type="text" class="form-control" placeholder="ISBN" name="ISBN">
         <input type="text" class="form-control" placeholder="Short Description with max 100 characters" name="short_des">
         <input type="text" class="form-control" placeholder="Long Description with max 700 characters" name="long_des">

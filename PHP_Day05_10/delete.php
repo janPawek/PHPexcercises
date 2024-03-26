@@ -19,7 +19,7 @@ if($row["image"] !="default_product.jpg"){
 
 
 // part to delete the record
-$sql = "DELETE FROM * 'inventory' WHERE id= {$id}";
+$sql = "DELETE FROM `inventory` WHERE id= {$id}";
 
 $result = mysqli_query($conn,$sql);
 

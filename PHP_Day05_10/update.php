@@ -5,11 +5,12 @@ require_once "file_upload.php";
 
 $id = $_GET["id"];
 
-$sql ="SELECT * FROM `inventory` WHERE id = {$id}";
+ $sql ="SELECT * FROM `inventory` WHERE id = {$id}";
 
 $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_assoc($result);
+
 
 
 if(isset($_POST["update"])){
@@ -89,18 +90,18 @@ if(isset($_POST["update"])){
     <img src="picture/<?php $row["image"]?>" alt="" width="150">
     </div>
     <form method="post" enctype="multipart/form-data">
-        <input type="text" class="form-control" placeholder="title" name="title" value="<?php $row["title"] ?>">
-        <input type="text" class="form-control" placeholder="insert url of image " name="image" value="<?php $row["image"] ?>">
-        <input type="text" class="form-control" placeholder="ISBN" name="ISBN" value="<?php $row["ISBN"] ?>">
-        <input type="text" class="form-control" placeholder="Short Description with max 100 characters" name="short_des" value="<?php $row["short_des"] ?>">
-        <input type="text" class="form-control" placeholder="Long Description with max 700 characters" name="long_des" value="<?php $row["long_des"] ?>">
-        <input type="text" class="form-control" placeholder="type: Fill in BOOK, DVD or CD" name="type" value="<?php $row["type"] ?>">
-        <input type="text" class="form-control" placeholder="First Name of author" name="author_first_name" value="<?php $row["author_first_name"] ?>">
-        <input type="text" class="form-control" placeholder="Last Name of author" name="author_last_name" value="<?php $row["author_last_name"] ?>">
-        <input type="text" class="form-control" placeholder="Publisher name" name="publisher_name" value="<?php $row["publisher_name"] ?>">
-        <input type="text" class="form-control" placeholder="Publisher address" name="publisher_address" value="<?php $row["publisher_address"] ?>">
-        <input type="text" class="form-control" placeholder="Publish date (yyyy-mm-dd)" name="publish_date" value="<?php $row["publish_date"] ?>">
-        <input type="text" class="form-control" placeholder="Fill in: available or reserved" name="status_del" value="<?php $row["status_del"] ?>">
+        <input type="text" class="form-control" placeholder="title" name="title" value="<?php echo $row["title"] ?>">
+        <input type="file" class="form-control" placeholder="insert url of image " name="image" value="<?= $row["image"] ?>">
+        <input type="text" class="form-control" placeholder="ISBN" name="ISBN" value="<?= $row["ISBN"] ?>">
+        <input type="text" class="form-control" placeholder="Short Description with max 100 characters" name="short_des" value="<?= $row["short_des"] ?>">
+        <input type="text" class="form-control" placeholder="Long Description with max 700 characters" name="long_des" value="<?= $row["long_des"] ?>">
+        <input type="text" class="form-control" placeholder="type: Fill in BOOK, DVD or CD" name="type" value="<?= $row["type"] ?>">
+        <input type="text" class="form-control" placeholder="First Name of author" name="author_first_name" value="<?= $row["author_first_name"] ?>">
+        <input type="text" class="form-control" placeholder="Last Name of author" name="author_last_name" value="<?= $row["author_last_name"] ?>">
+        <input type="text" class="form-control" placeholder="Publisher name" name="publisher_name" value="<?= $row["publisher_name"] ?>">
+        <input type="text" class="form-control" placeholder="Publisher address" name="publisher_address" value="<?= $row["publisher_address"] ?>">
+        <input type="text" class="form-control" placeholder="Publish date (yyyy-mm-dd)" name="publish_date" value="<?= $row["publish_date"] ?>">
+        <input type="text" class="form-control" placeholder="Fill in: available or reserved" name="status_del" value="<?= $row["status_del"] ?>">
         <input class="btn btn-primary" type="submit" value="Update Product" name="update">
     </form>
     <a class="btn btn-danger" href="index.php">Back</a>

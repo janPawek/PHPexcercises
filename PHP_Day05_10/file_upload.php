@@ -3,10 +3,10 @@
 function fileUpload($image)
 {
     if($image["error"] == 4){
-        $imageName = "product_default.jpg";
+        $imageName = "default_product.jpg";
         $message = "No picture has been chosen, but you can upload an image later!";
     }else {
-       $checkIfImage = getimagesize($image("tmp_name"));
+       $checkIfImage = getimagesize($image["tmp_name"]);
         $message = $checkIfImage ? "OK": "Not an image";
     }
 
