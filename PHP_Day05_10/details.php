@@ -47,7 +47,7 @@
       $row = mysqli_fetch_assoc($result);
       
       $layout = "<p><h4>{$row["title"]}</h4></p>
-      <img src='{$row["image"]}'>
+      <img src='picture/<php= $row["image"] ?>' alt=''>
       <p><h5>{$row["author_first_name"]} {$row["author_last_name"]}</h5></p>
       <p>{$row["long_des"]}</p>
       <p>{$row["ISBN"]}</p> 
@@ -67,7 +67,7 @@
       if(isset($_GET['search'])){
     ?>
 <!-- Ergebnisse anzeigen -->
-<div class='row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1'>
+<!-- <div class='row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1'>
   <?= $layout ?>
 </div>
     <?php }else{ ?>
@@ -76,7 +76,7 @@
       </div>
 
       <?php } ?>
-
+ -->
 
     <a class="btn btn-danger" href="index.php">Back</a>
 
