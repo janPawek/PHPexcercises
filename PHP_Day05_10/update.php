@@ -1,47 +1,50 @@
 <?php
-    require "db_connect.php";
 
-    // Initialisiere die Suchanfrage
-    $search = "";
-    if(isset($_GET['search'])) {
-        $search = $_GET['search'];
+require_once "db_connect.php";
+require_once "file_upload.php";
+
+$id = $_GET["id"];
+
+$sql ="SELECT * FROM `inventory` WHERE id = {$id}";
+
+$result = mysqli_query($conn, $sql);
+
+$row = mysqli_fetch_assoc($result);
+
+
+if(isset($_POST["update"])){
+    $title = $_POST["title"];
+    $image = fileUpload($_FILES["image"]);
+    $ISBN = $_POST["ISBN"];
+    $short_des = $_POST["short_des"];
+    $long_des = $_POST["long_des"];
+    $type = $_POST["type"];
+    $author_first_name = $_POST["author_first_name"];
+    $author_last_name = $_POST["author_last_name"];
+    $publisher_name = $_POST["publisher_name"];
+    $publisher_address = $_POST["publisher_address"];
+    $publish_date = $_POST["publish_date"];
+    $status_del = $_POST["status_del"];
+
+    if($_FILES["image"]["error"] == 4){
+        $sqlUpdate = "UPDATE `inventory` SET `title`='{$title}',`ISBN`='{$ISBN}',`short_des`='{$short_des}',`long_des`='{$long_des}',`type`='{$type}',`author_first_name`='{$author_first_name}',`author_last_name`='{$author_last_name}',`publisher_name`='{$publisher_name}',`publisher_address`='{$publisher_address}',`publish_date`='{$publish_date}',`status_del`='{$status_del}' WHERE id = {$id}"; 
+    }else{
+        $sqlUpdate = "UPDATE `inventory` SET `title`='{$title}',`image`='{$image[0]}',`ISBN`='{$ISBN}',`short_des`='{$short_des}',`long_des`='{$long_des}',`type`='{$type}',`author_first_name`='{$author_first_name}',`author_last_name`='{$author_last_name}',`publisher_name`='{$publisher_name}',`publisher_address`='{$publisher_address}',`publish_date`='{$publish_date}',`status_del`='{$status_del}' WHERE id = {$id}"; 
     }
+    $result = mysqli_query($conn, $sqlUpdate);
 
-    // Erstelle die SQL-Anfrage unter Berücksichtigung der Suchanfrage
-    $sql = "SELECT * FROM `inventory` WHERE `title` LIKE '%$search%' OR `author_first_name` LIKE '%$search%' OR `author_last_name` LIKE '%$search%' OR `ISBN` LIKE '%$search%' OR `short_des` LIKE '%$search%' OR `long_des` LIKE '%$search%' OR `type` LIKE '%$search%'  OR `publisher_name` LIKE '%$search%' OR `publisher_address` LIKE '%$search%' OR `status_del` LIKE '%$search%' OR `publish_date` LIKE '%$search%'";
-
-    $result = mysqli_query($conn, $sql);
-
-    $layout = "";
-
-    if(mysqli_num_rows($result) == 0){
-        $layout = "No result";
+    if($result){
+        echo "<div class='alert alert-success' role='alert'>
+                Product has been updated!, {$image[1]}
+              </div>";
+        header("refresh: 3; url= index.php");
     } else {
-        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        foreach ($rows as $value) {
-            $buttonClass = (strpos($value["status_del"], "available") !== false) ? "btn-light" : "btn-danger";
-            $layout .= "<div class='card'>
-                            <div class='card-body'>
-                                <h3 class='card-title'>{$value["title"]}</h3>
-                                <img src='{$value["image"]}' class='card-img-top' height='55%' alt='...'>
-                                <br><br>
-                                <h5 class='card-text'>{$value["author_first_name"]} {$value["author_last_name"]}</h5>
-                                <p class='card-text'>" . substr($value["long_des"], 0, 60) . "... more</p>
-                                <a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
-                                <br><br>
-                                <div class='card_over'>
-                                    <a href='details.php?id={$value["id"]}' class='btn btn-primary'>Details</a>
-                                    <button type='button' class='btn {$buttonClass}' disabled>{$value["status_del"]}</button>
-                                </div>
-                                    <br>
-                                    <div class='card_over'>
-                                            <a href='delete.php?id={$value["id"]}' class='btn btn-danger'>Delete</a>
-                                            <a href='update.php?id={$value["id"]}' class='btn btn-dark'>Update</a>
-                                    </div>
-                            </div>
-                        </div>";
-        }
+        echo "<div class='alert alert-danger' role='alert'>
+                Something went wrong, please try again later!
+              </div>";
     }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,48 +53,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        .card_over {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .foot {
-    width: 100%;
-    background-color: black;
-    color: white;
-    ul {
-        padding-top: 1%;
-        display: flex;
-        list-style-type: none;
-        justify-content: center;
-        li {
-            cursor: pointer;
-            padding: 10px;
-        }
-    }
-}
-      .autocomplete-box {
-            position: relative;
-        }
-        .autocomplete-results {
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            width: 100%;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-        .autocomplete-item {
-            padding: 5px;
-            cursor: pointer;
-        }
-        .autocomplete-item:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
-    <title>Big Library - CodeReview Backend - Jan Pawek</title>
+    <title>Create - Big Library - CodeReview Backend - Jan Pawek</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-primary sticky-bottom">
@@ -110,30 +72,39 @@
         </li>
       </ul>
 
-      <!-- Suchformular -->
+      <!-- Suchformular starts-->
       <form class="d-flex" role="search" action="" method="GET">
-        <div class="autocomplete-box">
-          <input id="searchInput" class="form-control me-2" type="text" name="search" placeholder="Search..." aria-label="Search">
-          <div class="autocomplete-results"></div>
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </div>
+        <input class="form-control me-2" type="text" name="search" placeholder="Search..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-    </div>
+     <!-- Suchformular starts-->
+
     </div>
   </div>
 </nav>
+      <!-- navbar ends-->
 
-        <h1>All products - best price!</h1>
-        <br>
-
-    <!-- Ergebnisse anzeigen -->
-    <div class='row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1'>
-        <?= $layout ?>
+<div class="container">
+    <div class="text-center">
+    <img src="picture/<?php $row["image"]?>" alt="" width="150">
     </div>
-
-    <a class="btn btn-primary" href="create.php">Create a product</a>
-        <br>
-        <br>
+    <form method="post" enctype="multipart/form-data">
+        <input type="text" class="form-control" placeholder="title" name="title" value="<?php $row["title"] ?>">
+        <input type="text" class="form-control" placeholder="insert url of image " name="image" value="<?php $row["image"] ?>">
+        <input type="text" class="form-control" placeholder="ISBN" name="ISBN" value="<?php $row["ISBN"] ?>">
+        <input type="text" class="form-control" placeholder="Short Description with max 100 characters" name="short_des" value="<?php $row["short_des"] ?>">
+        <input type="text" class="form-control" placeholder="Long Description with max 700 characters" name="long_des" value="<?php $row["long_des"] ?>">
+        <input type="text" class="form-control" placeholder="type: Fill in BOOK, DVD or CD" name="type" value="<?php $row["type"] ?>">
+        <input type="text" class="form-control" placeholder="First Name of author" name="author_first_name" value="<?php $row["author_first_name"] ?>">
+        <input type="text" class="form-control" placeholder="Last Name of author" name="author_last_name" value="<?php $row["author_last_name"] ?>">
+        <input type="text" class="form-control" placeholder="Publisher name" name="publisher_name" value="<?php $row["publisher_name"] ?>">
+        <input type="text" class="form-control" placeholder="Publisher address" name="publisher_address" value="<?php $row["publisher_address"] ?>">
+        <input type="text" class="form-control" placeholder="Publish date (yyyy-mm-dd)" name="publish_date" value="<?php $row["publish_date"] ?>">
+        <input type="text" class="form-control" placeholder="Fill in: available or reserved" name="status_del" value="<?php $row["status_del"] ?>">
+        <input class="btn btn-primary" type="submit" value="Update Product" name="update">
+    </form>
+    <a class="btn btn-danger" href="index.php">Back</a>
+</div>
         <!-- FOOTER SECTION-START -->
     
         <div class="container-fluid bg-primary text-dark  text-center pt-4 pb-2">
@@ -170,43 +141,5 @@
         </div>
     </footer>
     <!-- FOOTER SECTION-END -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('searchInput').addEventListener('input', function() {
-        var searchText = this.value.trim();
-        if(searchText.length >= 2) {
-            fetch('autocomplete.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: 'search=' + encodeURIComponent(searchText)
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('.autocomplete-results').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        } else {
-            document.querySelector('.autocomplete-results').innerHTML = '';
-        }
-    });
-
-    document.addEventListener('click', function(event) {
-        if(!event.target.closest('.autocomplete-item')) {
-            document.querySelector('.autocomplete-results').innerHTML = '';
-        }
-    });
-
-    document.querySelector('.autocomplete-results').addEventListener('click', function(event) {
-        var selectedText = event.target.textContent;
-        document.getElementById('searchInput').value = selectedText;
-        this.innerHTML = '';
-    });
-});
-</script>
 </body>
 </html>

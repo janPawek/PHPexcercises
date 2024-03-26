@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 25. Mrz 2024 um 13:04
+-- Erstellungszeit: 25. Mrz 2024 um 13:25
 -- Server-Version: 10.4.28-MariaDB
 -- PHP-Version: 8.2.4
 
@@ -60,7 +60,8 @@ INSERT INTO `inventory` (`id`, `title`, `image`, `ISBN`, `short_des`, `long_des`
 (9, 'Die Tage ', 'https://m.media-amazon.com/images/I/91XSVtNAYNL._SY425_.jpg', '14-123-123-123-14', 'Wo finde ich die schönsten Tulpen? Diese und weitere ', 'Darf ich in meinen Garten eine Statue stellen? Und neigen Gärtner zu Gewaltverbrechen? Jakob Augstein hat ein ungewöhnliches, sehr subjektives Buch über die Gartenarbeit verfasst. Man findet darin nicht nur hilfreiche Informationen zum Büschepflanzen, Zwiebelnsetzen und Blumengießen, sondern auch sehr amüsante Abschweifungen zu allerlei Fragen, die einem beim Unkrautjäten durch den Kopf gehen.', 'BOOK', 'Franziska', 'Augstein', 'Kindle Edition', '167 Fleet Street, London EC4A 2EA', '2024-01-10', 'available'),
 (10, 'The Lost Symbol', 'https://m.media-amazon.com/images/I/71CxYdUk3wL._SX342_.jpg', '15-123-123-123-15', 'About sales tax (or VAT) About sales tax (or VAT)', 'Your order may include items from one or more Marketplace sellers. Since each of these sellers has different sales tax (or VAT) obligations, all Marketplace prices for orders shipped to delivery addresses within the EU and Northern Ireland are displayed as final prices indicated by the seller.', 'DVD', 'Dan', 'Brown', 'Kindle Edition', '167 Fleet Street, London EC4A 2EA', '2024-01-16', 'available'),
 (11, 'Inferno', 'https://m.media-amazon.com/images/I/81nZai5GB9L._SY445_.jpg', '[16-123-123-123-16]', 'Tom Hanks (Darsteller), Felicity Jones (Darsteller)', 'Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details.', 'DVD', 'Dan', 'Brown', 'Kindle Edition', '167 Fleet Street, London EC4A 2EA', '2016-03-10', 'available'),
-(12, 'The Da Vinci Code', 'https://m.media-amazon.com/images/I/71y4X5150dL._SL1500_.jpg', '3-8301-9807-3-879', 'The Louvre, Paris: the elderly curator of the museum ', 'The Louvre, Paris: the elderly curator of the museum has been violently murdered in the Grand Gallery. Harvard professor Robert Langdon is summoned to decipher the baffling codes which the police find alongside the body. As he and a gifted French cryptologist, Sophie Neveu, sort through the bizarre riddles, they are stunned to find a trail that leads to the works of Leonardo Da Vinci - and suggests the answer to an age-old mystery that stretches deep into the vault of history.', 'BOOK', 'Dan', 'Brown', 'Robert Langdon', '167 Fleet Street, London EC4A 2EA', '2014-03-02', 'available');
+(12, 'The Da Vinci Code', 'https://m.media-amazon.com/images/I/71y4X5150dL._SL1500_.jpg', '3-8301-9807-3-879', 'The Louvre, Paris: the elderly curator of the museum ', 'The Louvre, Paris: the elderly curator of the museum has been violently murdered in the Grand Gallery. Harvard professor Robert Langdon is summoned to decipher the baffling codes which the police find alongside the body. As he and a gifted French cryptologist, Sophie Neveu, sort through the bizarre riddles, they are stunned to find a trail that leads to the works of Leonardo Da Vinci - and suggests the answer to an age-old mystery that stretches deep into the vault of history.', 'BOOK', 'Dan', 'Brown', 'Robert Langdon', '167 Fleet Street, London EC4A 2EA', '2014-03-02', 'available'),
+(13, 'Fifty Shades ', 'https://m.media-amazon.com/images/I/51S8q+RoI4L._SY300_.jpg', '35-123-123-123-35', ' Sie ist 21, Literaturstudentin und ', 'Sie ist 21, Literaturstudentin und in der Liebe nicht allzu erfahren. Doch dann lernt Ana Steele den reichen und ebenso unverschämt selbstbewussten wie attraktiven Unternehmer Christian Grey bei einem Interview für ihre Uni-Zeitung kennen. Und möchte ihn', 'DVD', 'E L ', 'James', 'Kindle Edition', '147 Fleet Street, London EC4A 2BU', '2023-06-29', 'available');
 
 --
 -- Indizes der exportierten Tabellen
@@ -80,7 +81,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT für Tabelle `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

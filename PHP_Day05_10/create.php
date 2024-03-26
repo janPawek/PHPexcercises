@@ -1,5 +1,6 @@
 <?php
     require "db_connect.php";
+    require "./file_upload.php";
         // Initialisiere die Suchanfrage
         $search = "";
         if(isset($_GET['search'])) {
@@ -44,37 +45,6 @@
               </div>";
             }
         }
-    // if (isset($_POST["create"])) {
-    //     $title = $_POST["title"];
-    //     $image = $_POST["image"];
-    //     $ISBN = $_POST["ISBN"];
-    //     $short_des = $_POST["short_des"];
-    //     $long_des = $_POST["long_des"];
-    //     $type = $_POST["type"];
-    //     $author_first_name = $_POST["author_first_name"];
-    //     $author_last_name = $_POST["author_last_name"];
-    //     $publisher_name = $_POST["publisher_name"];
-    //     $publisher_address = $_POST["publisher_address"];
-    //     $publish_date = $_POST["publish_date"];
-    //     $status_del = $_POST["status_del"];
-
-
-    //     $sql = "INSERT INTO `inventory`(`title`, `image`, `ISBN`, `short_des`, `long_des`, `type`, `author_first_name`, `author_last_name`, `publisher_name`, `publisher_address`, `publish_date`, `status_del`) VALUES ('{$title}','{$image}','{$ISBN}','{$short_des}','{$long_des}','{$type}','{$author_first_name}','{$author_last_name}','{$publisher_name}','{$publisher_address}','{$publish_date}','{$status_del}')";
-
-    //     // mysqli_query($conn, $sql);
-    //     // header("Location: index.php");
-
-    // if(mysqli_query($conn, $sql)){
-    //     echo "<div class='alert alert-primary' role='alert'>
-    //     New product has been created!
-    //   </div>";
-    //   header("refresh: 3; url= index.php");
-    // } else {
-    //     echo "<div class='alert alert-danger' role='alert'>
-    //     Something went wrong, please try again later!
-    //   </div>";
-    // }
-    // }
 ?>
 
 
@@ -111,7 +81,8 @@
     </div>
   </div>
 </nav>
-    <form method="post">
+  <div class="container">
+    <form method="post" enctype="multipart/form-data">
         <input type="text" class="form-control" placeholder="title" name="title">
         <input type="text" class="form-control" placeholder="insert url of image " name="image">
         <input type="text" class="form-control" placeholder="ISBN" name="ISBN">
@@ -127,7 +98,7 @@
         <input class="btn btn-primary" type="submit" value="Create Product" name="create">
     </form>
     <a class="btn btn-danger" href="index.php">Back</a>
-
+  </div>
         <!-- FOOTER SECTION-START -->
     
         <div class="container-fluid bg-primary text-dark  text-center pt-4 pb-2">

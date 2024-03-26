@@ -33,7 +33,7 @@ $result = mysqli_query($conn, $sql);
                             <img src='{$value["image"]}' class='card-img-top' height='55%' alt='...'>
                             <br><br>
                             <h5 class='card-text'>{$value["author_first_name"]} {$value["author_last_name"]}</h5>
-                            <p class='card-text'>{$value["short_des"]}</p>
+                            <p class='card-text'>" . substr($value["long_des"], 0, 60) . "... more</p>
                             <a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
                             <br><br>
                             <div class='card_over'>
