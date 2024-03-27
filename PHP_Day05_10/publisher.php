@@ -2,6 +2,7 @@
 require_once "db_connect.php";
 require_once "header.php";
 require_once "footer.php";
+require_once "./file_upload.php";
 
 $layout = "";
 

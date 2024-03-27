@@ -13,6 +13,7 @@
     require_once "db_connect.php";
     require_once "header.php";
     require_once "footer.php";
+    require_once "functions.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user"]}";
     $result = mysqli_query($conn, $sql);

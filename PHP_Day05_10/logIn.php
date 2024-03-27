@@ -1,6 +1,7 @@
 <?php
     session_start();
-    
+
+
     if(isset($_SESSION["admin"])){
         header("Location: dashboard.php");
     }
@@ -8,11 +9,13 @@
     if(isset($_SESSION["user"])){
         header("Location: index.php");
     }
-    
+
     require_once "db_connect.php";
     require_once "header.php";
     require_once "footer.php";
     require_once "functions.php";
+    require_once "./file_upload.php";
+
 
     $error = false;
 
@@ -30,7 +33,7 @@
 
     if(empty($email)){
         $error = true;
-        $emailError= "You can´tleave this input empty!";
+        $emailError= "You can´t leave this input empty!";
     } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $error = true;
     $emailError = "Please type a valid e-mail address!";
@@ -63,6 +66,8 @@
     
 ?>
 
+<?php my_header();?>
+
 
 <div class="container">
 
@@ -74,3 +79,5 @@
 <input type="password" placeholder="Type your password!" class="form-control" name="password"><p class="text-danger"><?php $passError ?></p>
 <input type="submit" value="Login now"  class="btn btn-primary" name="login">
 </form>
+
+<?php my_footer();?>
