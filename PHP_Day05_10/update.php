@@ -56,7 +56,7 @@ if(isset($_POST["update"])){
 
 <div class="container">
     <div class="text-center">
-    <img src="picture/<?php $row["image"]?>" alt="" width="150">
+    <img src="picture/<?php echo $row["image"]?>" alt="" width="150">
     </div>
     <form method="post" enctype="multipart/form-data">
         <input type="text" class="form-control" placeholder="title" name="title" value="<?php echo $row["title"] ?>">

@@ -78,6 +78,21 @@
                 <li class="nav-item">
                   <a class="nav-link" href="create.php">Create</a>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">
+                <img src="pictures/<?php $row["picture"] ?>" width="30" height="24"></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">
+                Logout
+                </a>
+
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="update_profile.php?id=<?= $row["id"] ?>">
+                Update Profile
+                </a>
+                </li>
               </ul>
         
               <!-- Suchformular -->

@@ -1,8 +1,20 @@
 <?php
+
+    session_start();
+
+    if (!isset($_SESSION["admin"]) && !isset($_SESSION["user"])){
+        header("Location: login.php");
+    }
+    
+    if(isset($_SESSION["admin"])){
+        header("Location: dashboard.php");
+    }
+
     require_once "db_connect.php";
     require_once "header.php";
     require_once "footer.php";
 
+    $sql = "SELECT * FROM users WHERE id = {$_SESSION["user"]}";
     $result = mysqli_query($conn, $sql);
 
     $layout = "";

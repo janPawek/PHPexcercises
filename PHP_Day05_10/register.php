@@ -1,9 +1,18 @@
 <?php
+session_start();
+
+if(isset($_SESSION["admin"])){
+    header("Location: dashboard.php");
+}
+
+if(isset($_SESSION["user"])){
+    header("Location: index.php");
+}
+
 require_once "db_connect.php";
 require_once "file_upload.php";
 require_once "header.php";
 require_once "footer.php";
-
 
 $error = false;
 $fnameError = $first_name = $lnameError = $last_name = $emailError = $email = $passError = $dateError = $date_of_birth = "";
