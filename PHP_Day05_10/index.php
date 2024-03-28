@@ -1,29 +1,34 @@
 <?php
-
+// i have to modify it by Live-Coding video
     session_start();
 
-    if (!isset($_SESSION["admin"]) && !isset($_SESSION["user"])){
-        header("Location: login.php");
+    if(!isset($_SESSION["user"]) && !isset($_SESSION["admin"])) {
+        header(("Location: login.php"));
     }
+
     
+
     if(isset($_SESSION["admin"])){
         header("Location: dashboard.php");
     }
 
     require_once "db_connect.php";
-    require_once "header.php";
     require_once "footer.php";
-    require_once "functions.php";
 
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user"]}";
     $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    require_once "header.php";
+
 
     $layout = "";
-
-    if(mysqli_num_rows($result) == 0){
+    $inv = "SELECT * FROM inventory";
+    $res = mysqli_query($conn, $inv);
+    if(mysqli_num_rows($res) == 0){
         $layout = "No result";
     } else {
-        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
         foreach ($rows as $value) {
             $buttonClass = (strpos($value["status_del"], "available") !== false) ? "btn-light" : "btn-danger";
             $layout .= "<div class='card'>
@@ -48,6 +53,14 @@
                         </div>";
         }
     }
+
+    // $readQuery = "SELECT * FROM inventory";
+    // $readResult = mysqli_query($conn, $sql);
+
+    // $layout
+
+    // if(mysqli_num_rows($readResult) == 0) {}
+
 ?>
 
 <?php my_header();?>

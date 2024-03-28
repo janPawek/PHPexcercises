@@ -1,21 +1,24 @@
 <?php
 session_start();
 
-if(isset($_SESSION["admin"])){
+if (isset($_SESSION["admin"])) {
     header("Location: dashboard.php");
 }
 
-if(isset($_SESSION["user"])){
-    header("Location: index.php");
+if (isset($_SESSION["user"])) {
+    header("Location: home.php");
 }
+
 
 require_once "db_connect.php";
 require_once "file_upload.php";
-require_once "header.php";
-require_once "footer.php";
+require_once "functions.php";
+
+
 
 $error = false;
 $fnameError = $first_name = $lnameError = $last_name = $emailError = $email = $passError = $dateError = $date_of_birth = "";
+
 
 
 if (isset($_POST["register"])) {
@@ -103,8 +106,17 @@ if (isset($_POST["register"])) {
 }
 ?>
 
-<?php my_header();?>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
     <div class="container">
         <form method="post" enctype="multipart/form-data">
             <input type="text" name="first_name" placeholder="Type your first name" class="form-control" value="<?= $first_name ?>">
@@ -122,5 +134,6 @@ if (isset($_POST["register"])) {
             <input type="submit" name="register" value="Register now" class="btn btn-primary">
         </form>
     </div>
+</body>
 
-    <?php my_footer();?>
+</html>

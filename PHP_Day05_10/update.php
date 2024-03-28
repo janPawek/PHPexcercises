@@ -1,10 +1,20 @@
 <?php
 
+session_start();
+
 require_once "db_connect.php";
 require_once "header.php";
 require_once "footer.php";
 require_once "./file_upload.php";
 require_once "functions.php";
+
+if(!isset($_SESSION["user"]) && !isset($_SESSION["admin"])) {
+    header(("Location: login.php"));
+}
+
+if (isset($_SESSION["user"])) {
+    header("Location: index.php");
+}
 
 $id = $_GET["id"];
 

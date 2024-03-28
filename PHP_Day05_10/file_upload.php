@@ -1,16 +1,13 @@
 <?php
-
+// i have to modify it by Live-Coding video 
 require_once "db_connect.php";
-require_once "./file_upload.php";
-require_once "header.php";
-require_once "footer.php";
 require_once "functions.php";
 
 
 function fileUpload($image)
 {
     if($image["error"] == 4){
-        $imageName = "default_product.jpg";
+        $imageName = "avatar.png";
         $message = "No picture has been chosen, but you can upload an image later!";
     }else {
        $checkIfImage = getimagesize($image["tmp_name"]);

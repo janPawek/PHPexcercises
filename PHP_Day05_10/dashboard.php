@@ -36,6 +36,7 @@ $row = mysqli_fetch_assoc($result);
                 Update Profile
                 </a>
                 </li>
+                <a class="navbar-brand" href="index.php">Home</a>
 
                 <a class="navbar-brand" href="update_profile.php">Update Profile</a>
 

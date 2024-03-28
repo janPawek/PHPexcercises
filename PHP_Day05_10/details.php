@@ -5,6 +5,14 @@
     require_once "footer.php";
     require_once "functions.php";
 
+    if(!isset($_SESSION["user"]) && !isset($_SESSION["admin"])) {
+      header(("Location: login.php"));
+  }
+
+  if (isset($_SESSION["user"])) {
+      header("Location: index.php");
+  }
+
       $id = $_GET["id"];
 
       $sql = "SELECT * FROM `inventory` WHERE id = {$id}";

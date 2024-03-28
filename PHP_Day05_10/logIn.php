@@ -18,16 +18,15 @@
 
 
     $error = false;
+    $email = $emailError = $passError = "";
 
     if(isset($_POST["login"])){
         $email = cleanInput($_POST["email"]);
         $password = cleanInput($_POST["password"]);
-    }
+    
 
-    // email validation
 
     $error = false;
-    $email = $emailError = $passError = "";
 
 
 
@@ -62,7 +61,7 @@
             }
             }
         }
-
+    }
     
 ?>
 

@@ -47,7 +47,7 @@ header("Location: {$goBack}");
 
 ?>
 
-
+<?php my_header();?>
 
 <form method="post" enctype="multipart/form-data">
     <input type="text" name="first_name" value="<?= $row["first_name"] ?>">
@@ -58,3 +58,5 @@ header("Location: {$goBack}");
     <input type="submit" name="update">
 
 </form>
+
+<?php my_footer();?>
