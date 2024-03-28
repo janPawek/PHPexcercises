@@ -4,7 +4,7 @@
     require_once "header.php";
     require_once "footer.php";
     require_once "functions.php";
-    
+    session_start();
     if(!isset($_SESSION["user"]) && !isset($_SESSION["admin"])) {
       header(("Location: login.php"));
   }
@@ -12,7 +12,9 @@
   if (isset($_SESSION["user"])) {
       header("Location: index.php");
   }
-    
+    $sql = "SELECT * FROM users WHERE id = {$_SESSION["admin"]}";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
         $layout = "";
     
         if(isset($_POST["create"])){

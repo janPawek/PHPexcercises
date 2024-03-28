@@ -19,6 +19,37 @@ $sql = "SELECT * FROM `users` WHERE id = {$_SESSION["admin"]}";
 $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_assoc($result);
+$layout = "";
+    $inv = "SELECT * FROM inventory";
+    $res = mysqli_query($conn, $inv);
+    if(mysqli_num_rows($res) == 0){
+        $layout = "No result";
+    } else {
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        foreach ($rows as $value) {
+            $buttonClass = (strpos($value["status_del"], "available") !== false) ? "btn-light" : "btn-danger";
+            $layout .= "<div class='card'>
+                            <div class='card-body'>
+                                <h3 class='card-title'>{$value["title"]}</h3>
+                                <img src='picture/{$value["image"]}' class='card-img-top' height='55%' alt='...'>
+                                <br><br>
+                                <h5 class='card-text'>{$value["author_first_name"]} {$value["author_last_name"]}</h5>
+                                <p class='card-text'>" . substr($value["long_des"], 0, 60) . "... more</p>
+                                <a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
+                                <br><br>
+                                <div class='card_over'>
+                                    <a href='details.php?id={$value["id"]}' class='btn btn-primary'>Details</a>
+                                    <button type='button' class='btn {$buttonClass}' disabled>{$value["status_del"]}</button>
+                                </div>
+                                    <br>
+                                    <div class='card_over'>
+                                            <a href='delete.php?id={$value["id"]}' class='btn btn-danger'>Delete</a>
+                                            <a href='update.php?id={$value["id"]}' class='btn btn-dark'>Update</a>
+                                    </div>
+                            </div>
+                        </div>";
+        }
+    }
 
 ?>
 
@@ -26,23 +57,8 @@ $row = mysqli_fetch_assoc($result);
 
 <!-- Alternate to put it in the <title>, i put to an <h4>  -->
 <h4>Hello <?= $row["first_name"] ?></h4>
-
-<nav class="navbar bg-body-tertiary">
-    <div class="container">
-        <a class="navbar-brand" href="#";>
-        <img src="pictures/<?= $row["picture"] ?>" width="30" height="24">    
-        </a>   
-        <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="update_profile.php?id=<?= $row["id"] ?>">
-                Update Profile
-                </a>
-                </li>
-                <a class="navbar-brand" href="index.php">Home</a>
-
-                <a class="navbar-brand" href="update_profile.php">Update Profile</a>
-
-        <a class="navbar-brand" href="logout.php?logout">Logout</a>
+<div class='row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1'>
+        <?= $layout ?>
     </div>
-</nav>
 
 <?php my_footer();?>

@@ -3,7 +3,11 @@
     require_once "./file_upload.php";
     require_once "footer.php";
     require_once "functions.php";
-    
+    // session_start();
+    // $sql = "SELECT * FROM users WHERE id = {$_SESSION["admin"]}";
+    // $result = mysqli_query($conn, $sql);
+    // $row = mysqli_fetch_assoc($result);
+    //     $layout = "";    
 
     // Initialisiere die Suchanfrage
     $search = "";

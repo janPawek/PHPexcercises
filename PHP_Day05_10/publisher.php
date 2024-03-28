@@ -3,6 +3,8 @@ require_once "db_connect.php";
 require_once "header.php";
 require_once "footer.php";
 
+
+
 $layout = "";
 
 $publisher_name = $_GET["publisher_name"];

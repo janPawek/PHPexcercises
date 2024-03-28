@@ -1,6 +1,11 @@
 <?php
     require_once "db_connect.php";
     require_once "./file_upload.php";
+    // session_start();
+    // $sql = "SELECT * FROM users WHERE id = {$_SESSION["admin"]}";
+    // $result = mysqli_query($conn, $sql);
+    // $row = mysqli_fetch_assoc($result);
+    //     $layout = "";
 
 function my_footer(){
     echo"</main>
