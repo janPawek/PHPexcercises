@@ -20,6 +20,7 @@ $session = $_SESSION["user"];
 $goBack = "index.php";
 }
 
+
 $sql = "SELECT * FROM users WHERE id = {$session}";
 
 $result = mysqli_query($conn, $sql);
@@ -29,19 +30,22 @@ if(isset($_POST["update"])){
 $first_name = $_POST["first_name"];
 $last_name = $_POST["last_name"];
 $email = $_POST["email"];
-$date_of_birth = $_POST["date_of_birth"];$picture = $_POST["first_name"];$first_name = fileUpload($_FILES["picture"]);
+$date_of_birth = $_POST["date_of_birth"];
+$picture = fileUpload($_FILES["picture"]);
 
 if($_FILES["picture"]["error"] == 4){
-    $update = "UPDATE `users` SET `first_name` = '{$first_name}' , `last_name` = '{$last_name}' ,  `date_of_birth` = '{$date_of_birth}' , `email` = '{$email}'  `picture` = '{$picture[0]}' WHERE id = {$session}";
+    $update = "UPDATE `users` SET `first_name` = '{$first_name}' , `last_name` = '{$last_name}' ,  `date_of_birth` = '{$date_of_birth}' , `email` = '{$email}' WHERE id = {$session}";
 } else {
+    
+    $update = "UPDATE `users` SET `first_name` = '{$first_name}' , `last_name` = '{$last_name}' ,  `date_of_birth` = '{$date_of_birth}' , `email` = '{$email}',`picture` = '{$picture[0]}' WHERE id = {$session}";
+
     if ($row["picture"] != "avatar.png") {
         unlink("pictures/{$row["picture"]}");
     }
-    
-    $update = "UPDATE `users` SET `first_name` = '{$first_name}' , `last_name` = '{$last_name}' ,  `date_of_birth` = '{$date_of_birth}' , `email` = '{$email}' WHERE id = {$session}";
 }
-$result = mysqli_query($conn,$sql);
-header("Location: {$goBack}");
+ if(mysqli_query($conn,$update)){
+    header("Location: {$goBack}");
+ }
 }
 
 

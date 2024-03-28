@@ -93,7 +93,7 @@
                     Logout
                     </a></li>
                     <li class='nav-item'>
-                <a class='nav-link active' aria-current='page' href='update_profile.php?id={$row['id']}'>
+                <a class='nav-link active' aria-current='page' href='update_profile.php'>
                 Update Profile
                 </a>
                 </li>";

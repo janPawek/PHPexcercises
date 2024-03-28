@@ -14,7 +14,8 @@ require_once "header.php";
 require_once "footer.php";
 require_once "functions.php";
 
-$sql = "SELECT * FROM users id = {$_SESSION["admin"]}";
+$sql = "SELECT * FROM `users` WHERE id = {$_SESSION["admin"]}";
+
 $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_assoc($result);
