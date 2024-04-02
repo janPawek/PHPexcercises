@@ -30,6 +30,7 @@
         $publisher_name = $_POST["publisher_name"];
         $publisher_address = $_POST["publisher_address"];
         $publish_date = $_POST["publish_date"];
+        $price = $_POST["price"];
         $status_del = $_POST["status_del"];
 
 

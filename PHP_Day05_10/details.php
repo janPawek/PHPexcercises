@@ -1,22 +1,32 @@
 <?php
+session_start();
+
     require_once "db_connect.php";
     require_once "./file_upload.php";
-    require_once "header.php";
+    
     require_once "footer.php";
     require_once "functions.php";
-    session_start();
-    $sql = "SELECT * FROM users WHERE id = {$_SESSION["admin"]}";
+
+
+    $session = "";
+    if(isset($_SESSION["user"])){
+        $session = $_SESSION["user"];
+    }elseif(isset($_SESSION["admin"])){
+      $session = $_SESSION["admin"];
+    }
+
+     $sql = "SELECT * FROM users WHERE id = {$session}";
+    
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
+    require_once "header.php";
         $layout = "";
         
     if(!isset($_SESSION["user"]) && !isset($_SESSION["admin"])) {
       header(("Location: login.php"));
   }
 
-  if (isset($_SESSION["user"])) {
-      header("Location: index.php");
-  }
+
 
       $id = $_GET["id"];
 
@@ -24,17 +34,20 @@
       
       $result = mysqli_query($conn, $sql);
       
-      $row = mysqli_fetch_assoc($result);
+      $row2 = mysqli_fetch_assoc($result);
       
-      $layout = "<p><h4>{$row["title"]}</h4></p>
-      <img src='picture/$row[image]' alt=''>
-      <p><h5>{$row["author_first_name"]} {$row["author_last_name"]}</h5></p>
-      <p>{$row["long_des"]}</p>
-      <p>{$row["ISBN"]}</p> 
-      <p>{$row["type"]}</p>
-      <p>{$row["publisher_name"]}</p>
-      <p>{$row["publisher_address"]}</p>
-      <p>{$row["publish_date"]}</p>";
+      $layout = "<p><h4>{$row2["title"]}</h4></p>
+      <img src='picture/$row2[image]' alt=''>
+      <p><h5>{$row2["author_first_name"]} {$row2["author_last_name"]}</h5></p>
+      <p>{$row2["long_des"]}</p>
+      <p>{$row2["ISBN"]}</p> 
+      <p>{$row2["type"]}</p>
+      <p>{$row2["publisher_name"]}</p>
+      <p>{$row2["publisher_address"]}</p>
+      <p>{$row2["publish_date"]}</p>
+      <p>{$row2["price"]}</p>";
+
+    
     ?>
 
 <?php my_header();?>

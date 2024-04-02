@@ -37,7 +37,7 @@ $rowInventory = mysqli_fetch_assoc($result);
 
 if(isset($_POST["update"])){
     $title = $_POST["title"];
-    $image = fileUpload($_FILES["image"]);
+    $image = fileUpload($_FILES["image"], "product");
     $ISBN = $_POST["ISBN"];
     $short_des = $_POST["short_des"];
     $long_des = $_POST["long_des"];
@@ -47,11 +47,15 @@ if(isset($_POST["update"])){
     $publisher_name = $_POST["publisher_name"];
     $publisher_address = $_POST["publisher_address"];
     $publish_date = $_POST["publish_date"];
+    $price = $_POST["price"];
     $status_del = $_POST["status_del"];
 
     if($_FILES["image"]["error"] == 4){
         $sqlUpdate = "UPDATE `inventory` SET `title`='{$title}',`ISBN`='{$ISBN}',`short_des`='{$short_des}',`long_des`='{$long_des}',`type`='{$type}',`author_first_name`='{$author_first_name}',`author_last_name`='{$author_last_name}',`publisher_name`='{$publisher_name}',`publisher_address`='{$publisher_address}',`publish_date`='{$publish_date}',`status_del`='{$status_del}' WHERE id = {$id}"; 
     }else{
+        if($rowInventory["image"] !== "default_product.jpg"){
+            unlink("./picture/($rowInventory[image]");
+        }
         $sqlUpdate = "UPDATE `inventory` SET `title`='{$title}',`image`='{$image[0]}',`ISBN`='{$ISBN}',`short_des`='{$short_des}',`long_des`='{$long_des}',`type`='{$type}',`author_first_name`='{$author_first_name}',`author_last_name`='{$author_last_name}',`publisher_name`='{$publisher_name}',`publisher_address`='{$publisher_address}',`publish_date`='{$publish_date}',`status_del`='{$status_del}' WHERE id = {$id}"; 
     }
     $result = mysqli_query($conn, $sqlUpdate);

@@ -1,4 +1,5 @@
 <?php
+
     require_once "db_connect.php";
     require_once "./file_upload.php";
     require_once "footer.php";
@@ -16,7 +17,7 @@
     }
 
     // Erstelle die SQL-Anfrage unter Berücksichtigung der Suchanfrage
-    $sql = "SELECT * FROM `inventory` WHERE `title` LIKE '%$search%' OR `author_first_name` LIKE '%$search%' OR `author_last_name` LIKE '%$search%' OR `ISBN` LIKE '%$search%' OR `short_des` LIKE '%$search%' OR `long_des` LIKE '%$search%' OR `type` LIKE '%$search%'  OR `publisher_name` LIKE '%$search%' OR `publisher_address` LIKE '%$search%' OR `status_del` LIKE '%$search%' OR `publish_date` LIKE '%$search%'";
+    $sql = "SELECT * FROM `inventory` WHERE `title` LIKE '%$search%' OR `author_first_name` LIKE '%$search%' OR `author_last_name` LIKE '%$search%' OR `ISBN` LIKE '%$search%' OR `short_des` LIKE '%$search%' OR `long_des` LIKE '%$search%' OR `type` LIKE '%$search%'  OR `publisher_name` LIKE '%$search%' OR `publisher_address` LIKE '%$search%' OR `status_del` LIKE '%$search%' OR `publish_date` LIKE '%$search%' OR `price` LIKE '%$search%'";
 
     $result = mysqli_query($conn, $sql);
 
@@ -27,46 +28,8 @@
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
             <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
-            <style>
-                .card_over {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                }
-                .foot {
-            width: 100%;
-            background-color: black;
-            color: white;
-            ul {
-                padding-top: 1%;
-                display: flex;
-                list-style-type: none;
-                justify-content: center;
-                li {
-                    cursor: pointer;
-                    padding: 10px;
-                }
-            }
-        }
-              .autocomplete-box {
-                    position: relative;
-                }
-                .autocomplete-results {
-                    position: absolute;
-                    background-color: #fff;
-                    border: 1px solid #ddd;
-                    width: 100%;
-                    max-height: 200px;
-                    overflow-y: auto;
-                    z-index: 1000;
-                }
-                .autocomplete-item {
-                    padding: 5px;
-                    cursor: pointer;
-                }
-                .autocomplete-item:hover {
-                    background-color: #f0f0f0;
-                }
+            <link rel='stylesheet' type='text/css' href='index.css'>
+                
             </style>
             <title>Big Library - CodeReview Backend - Jan Pawek</title>
         </head>
@@ -81,16 +44,13 @@
               <ul class='navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll' style='--bs-scroll-height: 100px;'>
                 <li class='nav-item'>
                   <a class='nav-link active' aria-current='page' href='index.php'>Home</a>
-                </li>
-                <li class='nav-item'>
-                  <a class='nav-link' href='create.php'>Create</a>
-                </li>
-                ";
+                </li>";
+
                 if(isset($_SESSION["user"]) || isset($_SESSION["admin"])){
                     global $row;
                     echo "<li class='nav-item'>
                     <a class='nav-link active' aria-current='page' href='#'>
-                    <img src='picture/{$row['picture']}' width='30' height='24'></a>
+                    <img src='picture/{$row["picture"]}' width='30' height='24'></a>
                     </li>
                     <li class='nav-item'>
                     <a class='nav-link active' aria-current='page' href='logout.php?logout'>
@@ -101,6 +61,20 @@
                 Update Profile
                 </a>
                 </li>";
+                  if(isset($_SESSION["admin"])){
+                    echo "<li class='nav-item'>
+                    <a class='nav-link' href='create.php'>Create</a>
+                  </li>";
+                  }
+                }
+                else{
+                  echo "<li class='nav-item'>
+                  <a class='nav-link active' aria-current='page' href='register.php'>Register</a>
+                </li>
+                <li class='nav-item'>
+                  <a class='nav-link active' aria-current='page' href='login.php'>Login</a>
+                </li>";
+                  
                 }
                 
                 echo "
@@ -110,10 +84,10 @@
         
               <!-- Suchformular -->
               <form class='d-flex' role='search' action=' method='GET'>
-                <div class='autocomplete-box'>
-                  <input id='searchInput' class='form-control me-2' type='text' name='search' placeholder='Search...' aria-label='Search'>
-                  <div class='autocomplete-results'></div>
-                  <button class='btn btn-outline-success' type='submit'>Search</button>
+                <div class='autocomplete-box neben'>
+                  <div><input id='searchInput' class='form-control me-2' type='text' name='search' placeholder='Search...' aria-label='Search'>
+                  <span class='autocomplete-results'></span></div>
+                  <div><button class='btn btn-outline-success' type='submit'>Search</button></div>
                 </div>
               </form>
             </div>

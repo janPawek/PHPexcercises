@@ -26,7 +26,6 @@ if (isset($_POST["register"])) {
     $date_of_birth = cleanInput($_POST["date_of_birth"]);
     $picture = fileUpload($_FILES["picture"]);
 
-
     # validation for first_name
 
     if (empty($first_name)) {

@@ -4,10 +4,15 @@ require_once "db_connect.php";
 require_once "functions.php";
 
 
-function fileUpload($image)
+function fileUpload($image, $case = "user")
 {
     if($image["error"] == 4){
+        // checking if a file
         $imageName = "avatar.png";
+        if($case === "product"){
+            $imageName = "default_product.jpg";
+
+        }
         $message = "No picture has been chosen, but you can upload an image later!";
     }else {
        $checkIfImage = getimagesize($image["tmp_name"]);

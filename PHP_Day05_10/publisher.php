@@ -26,6 +26,7 @@ $result = mysqli_query($conn, $sql);
             <h5 class='card-text'>{$value["author_first_name"]} {$value["author_last_name"]}</h5>
             <p class='card-text'>" . substr($value["long_des"], 0, 60) . "... more</p>
             <a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
+            <p class='card-text'>{$value["price"]}</p>
             <br><br>
             <div class='card_over'>
                 <a href='details.php?id={$value["id"]}' class='btn btn-primary'>Details</a>
