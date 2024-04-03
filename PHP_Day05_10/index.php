@@ -23,13 +23,13 @@
 // modify code for cart, maybe it will not works, that is the reason for the index copy.php. the original (working) code
     $layout = "";
     $inv = "SELECT * FROM inventory";
-    $res = mysqli_query($conn, $inv);
+    $result = mysqli_query($conn, $inv);
     // following line ($res) i modify at live-Coding at GMAIL-Document (Video) of Serri Tuesday April 2nd afternoon-Session
-    if(mysqli_num_rows($readResult) == 0){
+    if(mysqli_num_rows($result) == 0){
         $layout = "No result";
     } else {
             // following line ($res) i modify at live-Coding at GMAIL-Document (Video) of Serri Tuesday April 2nd afternoon-Session
-        $rows = mysqli_fetch_all($readResult, MYSQLI_ASSOC);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
         foreach ($rows as $value) {
             $buttonClass = (strpos($value["status_del"], "available") !== false) ? "btn-light" : "btn-danger";
             if (isset($_SESSION["admin"])){
@@ -37,12 +37,12 @@
                 <div class='card-body'>
                     <h3 class='card-title'>{$value["title"]}</h3>
                     <img src='picture/{$value["image"]}' class='card-img-top' height='55%' alt='...'>
-                    <p class='card-text'>{$value["price"]}</p>
                     <br><br>
                     <h5 class='card-text'>{$value["author_first_name"]} {$value["author_last_name"]}</h5>
                     <p class='card-text'>" . substr($value["long_des"], 0, 60) . "... more</p>
-                    <a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
-                    <br><br>
+                    <div class='same-row'><a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
+                    <p class='card-text'><b>{$value["price"]} €</b></p>
+                    </div><br><br>
                     <div class='card_over'>
                         <a href='details.php?id={$value["id"]}' class='btn btn-primary'>Details</a>
                         <button type='button' class='btn {$buttonClass}' disabled>{$value["status_del"]}</button>
@@ -62,9 +62,10 @@
                 <br><br>
                 <h5 class='card-text'>{$value["author_first_name"]} {$value["author_last_name"]}</h5>
                 <p class='card-text'>" . substr($value["long_des"], 0, 60) . "... more</p>
-                <a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
-                <p class='card-text'>{$value["price"]}</p>
-                <br><br>
+                <div class='same-row'><a class='btn btn-warning' href='publisher.php?publisher_name={$value["publisher_name"]}'>{$value["publisher_name"]}</a>
+                <p class='card-text' ><b>{$value["price"]} €</b></p>
+                </div><br><br>
+            <br><br>
                 <div class='card_over'>
                     <a href='details.php?id={$value["id"]}' class='btn btn-primary'>Details</a>
                     <a href='cart.php?id={$value["id"]}' class='btn btn-primary'>Add to cart</a>

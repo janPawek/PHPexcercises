@@ -31,10 +31,11 @@
         $publisher_address = $_POST["publisher_address"];
         $publish_date = $_POST["publish_date"];
         $price = $_POST["price"];
+        $tax_perc = $_POST["tax_perc"];
         $status_del = $_POST["status_del"];
 
 
-       $sql = "INSERT INTO `inventory`(`title`, `image`, `ISBN`, `short_des`, `long_des`, `type`, `author_first_name`, `author_last_name`, `publisher_name`, `publisher_address`, `publish_date`, `status_del`) VALUES ('{$title}','{$image[0]}','{$ISBN}','{$short_des}','{$long_des}','{$type}','{$author_first_name}','{$author_last_name}','{$publisher_name}','{$publisher_address}','{$publish_date}','{$status_del}')";
+       $sql = "INSERT INTO `inventory`(`title`, `image`, `ISBN`, `short_des`, `long_des`, `type`, `author_first_name`, `author_last_name`, `price`, `tax_perc`, `publisher_name`, `publisher_address`, `publish_date`, `status_del`) VALUES ('{$title}','{$image[0]}','{$ISBN}','{$short_des}','{$long_des}','{$type}','{$author_first_name}','{$author_last_name}','{$publisher_name}','{$publisher_address}','{$publish_date}','{$status_del}')";
 
        if(mysqli_query($conn, $sql)){
                 echo "<div class='alert alert-success' role='alert'>
@@ -64,6 +65,8 @@
         <input type="text" class="form-control" placeholder="Publisher name" name="publisher_name">
         <input type="text" class="form-control" placeholder="Publisher address" name="publisher_address">
         <input type="text" class="form-control" placeholder="Publish date (yyyy-mm-dd)" name="publish_date">
+        <input type="text" class="form-control" placeholder="Price in €" name="price">
+        <input type="text" class="form-control" placeholder="Taxes in %" name="tax_perc">
         <input type="text" class="form-control" placeholder="Fill in: available or reserved" name="status_del">
         <input class="btn btn-primary" type="submit" value="Create Product" name="create">
     </form>

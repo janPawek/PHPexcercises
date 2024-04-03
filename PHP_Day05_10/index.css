@@ -25,6 +25,11 @@ li {
     display: flex;
     flex-direction: row;
 }
+.same-row{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .autocomplete-results {
     position: absolute;
     background-color: #fff;
