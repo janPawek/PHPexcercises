@@ -100,7 +100,7 @@
                 <mxCell id="78" value="Order now" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="450" y="810" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="79" value="order will be send per email to admin&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="79" value="order will be send per email to admin&amp;nbsp; &amp;amp; record at db" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
                     <mxGeometry x="190" y="810" width="240" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="20" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -184,7 +184,7 @@
                 <mxCell id="49" value="Total" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="105" y="743" width="120" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="50" value="4" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="265" y="743" width="20" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="51" value="net €" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -210,6 +210,42 @@
                 </mxCell>
                 <mxCell id="80" value="Input field?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
                     <mxGeometry x="210" y="560" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="delete this&amp;nbsp; record&amp;nbsp; at &quot;cart&amp;nbsp;.php&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="500" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="28" target="89">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="790" as="sourcePoint"/>
+                        <mxPoint x="450" y="740" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="83" value="" style="endArrow=none;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="33" target="81">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="790" as="sourcePoint"/>
+                        <mxPoint x="450" y="740" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="84" value="qtty: col at db at table &quot;cart&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="540" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="" style="endArrow=none;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="25" target="84">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="790" as="sourcePoint"/>
+                        <mxPoint x="450" y="740" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="87" value="col at table &quot;inventory&quot; at db: named &quot;price&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="597" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" value="" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="31" target="87">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="790" as="sourcePoint"/>
+                        <mxPoint x="450" y="740" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="89" value="col at table &quot;inventory&quot; at db: named &quot;tax_perc&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="724.5" width="120" height="57" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
