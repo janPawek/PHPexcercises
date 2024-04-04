@@ -118,9 +118,6 @@
                 <mxCell id="24" value="1" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
                     <mxGeometry x="185" y="627" width="20" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" value="2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="265" y="622" width="20" height="20" as="geometry"/>
-                </mxCell>
                 <mxCell id="27" value="net €" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="295" y="622" width="40" height="20" as="geometry"/>
                 </mxCell>
@@ -157,9 +154,6 @@
                 <mxCell id="40" value="1" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
                     <mxGeometry x="185" y="692" width="20" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" value="2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="265" y="688" width="20" height="20" as="geometry"/>
-                </mxCell>
                 <mxCell id="42" value="net €" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="295" y="688" width="40" height="20" as="geometry"/>
                 </mxCell>
@@ -183,9 +177,6 @@
                 </mxCell>
                 <mxCell id="49" value="Total" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="105" y="743" width="120" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="50" value="4" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="265" y="743" width="20" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="51" value="net €" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="295" y="743" width="40" height="20" as="geometry"/>
@@ -229,9 +220,9 @@
                 <mxCell id="84" value="qtty: col at db at table &quot;cart&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="650" y="540" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="86" value="" style="endArrow=none;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="25" target="84">
+                <mxCell id="86" value="" style="endArrow=none;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" target="84">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="400" y="790" as="sourcePoint"/>
+                        <mxPoint x="275" y="622" as="sourcePoint"/>
                         <mxPoint x="450" y="740" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>

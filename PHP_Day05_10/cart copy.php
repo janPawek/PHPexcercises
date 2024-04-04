@@ -47,10 +47,11 @@ if(mysqli_num_rows($cartResult) == 0){
         $qtty = $value["qtty"];
         $brutto = $value["price"];
         $tax = $value["tax_perc"];
-        $tax_eur = $brutto / 100 * $tax;
+        $tax_eur = $bruttoTotal / 100 * $tax;
         $netto = $brutto - $tax_eur;
 
-        $netto_ges = $netto * $qtty;
+        $nettoTotal = $netto * $qtty;
+        $bruttoTotal = $brutto * $qtty;
 
         // echo "<pre>";
         // var_dump($brutto, $netto, $tax_eur);
@@ -155,32 +156,41 @@ if(mysqli_num_rows($cartResult) == 0){
                                     <tr>
                                         <th>#</th>
                                         <th class="text-left">DESCRIPTION</th>
-                                        <th class="text-right">HOUR PRICE</th>
-                                        <th class="text-right">HOURS</th>
-                                        <th class="text-right">TOTAL</th>
+                                        <th class="text-right">QTTY</th>
+                                        <th class="text-right">NET €</th>
+                                        <th class="text-right">TAX %</th>
+                                        <th class="text-right">NET Total</th>
+                                        <th class="text-right">TAX €</th>
+                                        <th class="text-right">BRUTTO</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="no">04</td>
+                                        <td class="no"><img src='picture/{$value["image"]}' class='card-img-top' height='55%'  alt='...'></td>
                                         <td class="text-left">
                                             <h3>
-                                                <a target="_blank" href="javascript:;">
-										Youtube channel
-										</a>
+                                                {$value["title"]}
+                                                <br>
+                                                {$value["publisher_name"]}
                                             </h3>
-                                            <a target="_blank" href="javascript:;">
-										   Useful videos
-									   </a> to improve your Javascript skills. Subscribe and stay tuned :)</td>
-                                        <td class="unit">$0.00</td>
-                                        <td class="qty">100</td>
-                                        <td class="total">$0.00</td>
+                                        </td>
+                                        <td class="unit">{$value["qtty"]}</td>
+                                        <td class="unit">{$value["netto"]} €</td>
+                                        <td class="qty">{$value["tax_perc"]} %</td>
+                                        <td class="total">$0.00</td>$nettoTotal = $netto * $qtty;
+                                        <td class="qty">100</td>$tax_eur = $bruttoTotal / 100 * $tax;
+
+
+                                        <td class="total">$0.00</td>$bruttoTotal = $brutto * $qtty;
                                     </tr>
                                     <tr>
                                         <td class="no">01</td>
                                         <td class="text-left">
                                             <h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
                                         <td class="unit">$40.00</td>
+                                        <td class="unit">$40.00</td>
+                                        <td class="qty">30</td>
+                                        <td class="total">$1,200.00</td>
                                         <td class="qty">30</td>
                                         <td class="total">$1,200.00</td>
                                     </tr>
@@ -191,6 +201,9 @@ if(mysqli_num_rows($cartResult) == 0){
                                         <td class="unit">$40.00</td>
                                         <td class="qty">80</td>
                                         <td class="total">$3,200.00</td>
+                                        <td class="qty">80</td>
+                                        <td class="total">$3,200.00</td>
+                                        <td class="total">$3,200.00</td>
                                     </tr>
                                     <tr>
                                         <td class="no">03</td>
@@ -198,6 +211,9 @@ if(mysqli_num_rows($cartResult) == 0){
                                             <h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
                                         <td class="unit">$40.00</td>
                                         <td class="qty">20</td>
+                                        <td class="total">$800.00</td>
+                                        <td class="qty">20</td>
+                                        <td class="total">$800.00</td>
                                         <td class="total">$800.00</td>
                                     </tr>
                                 </tbody>
@@ -237,5 +253,19 @@ if(mysqli_num_rows($cartResult) == 0){
 
 </div>
 
+
+
+<table width="100%" border="1" bgcolor="#ffffff">
+    <tr>
+        <td width="25%">25</td>
+        <td width="50%">50</td>
+        <td width="25%">25</td>
+    </tr>
+    <tr>
+        <td width="50%">50</td>
+        <td width="30%">30</td>
+        <td width="20%">20</td>
+    </tr>
+</table>
 
 <?php my_footer();?>
