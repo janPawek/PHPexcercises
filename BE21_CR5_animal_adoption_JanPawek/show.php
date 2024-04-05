@@ -30,6 +30,7 @@
           <p class="card-text">Location : '.$row["location"].'</p>
           <p class="card-text">Color: '.$row["description"].'</p>
           <p class="card-text"><b>About me:</b><br> '.$row["character"].'</p>
+          <hr>
           <p class="card-text">Category: '.$row["category"].'</p>
           <p class="card-text">Breed: '.$row["breed"].'</p>
           <p class="card-text"><b>Age:</b> '.$row["age"].'</p>
