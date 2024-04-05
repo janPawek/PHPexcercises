@@ -50,6 +50,7 @@ if ($_GET['id']) {
           <p class="card-text">Breed: '.$breed.'</p>
           <p class="card-text">Age: '.$age.'</p>
           <p class="card-text">Vaccinated: '.$vaccinated.'</p>
+          <p class="card-text"><b>Status:</b> '.$status.'</p>
           <h3 class="mb-4">Do you really want to adopt this pet?</h3>
                 <a href="a_adopt.php?id='.$id.'" class="btn btn-primary">Yes</a>
                 <a href="javascript:history.back()" class="btn btn-danger">No</a><br>
